@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqvm7yiabs4wl"]
+
+[ext_resource type="Script" path="res://scenes/lumi.cs" id="1_m3jlh"]
+[ext_resource type="SpriteFrames" uid="uid://b5l3d23unia0y" path="res://assets/lumi_sprite.tres" id="2_kal52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd6fy"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48xa8"]
+size = Vector2(44, 53)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_m3jlh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_kal52")
+animation = &"balancing"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(64, 64)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_yd6fy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(62, 75)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_48xa8")
+
+[node name="GrabPos" type="Marker2D" parent="."]
+position = Vector2(29, 15)
+
+[connection signal="input_event" from="." to="." method="_inputEvent"]
+[connection signal="animation_finished" from="Sprite" to="." method="_animationFinished"]
+[connection signal="input_event" from="Area2D" to="." method="_inputEvent"]

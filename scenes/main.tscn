@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfgjrgv2g2vb1"]
+
+[ext_resource type="Script" path="res://scenes/main.cs" id="1_rdabs"]
+[ext_resource type="PackedScene" uid="uid://cqvm7yiabs4wl" path="res://scenes/lumi.tscn" id="2_v5km2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rdabs")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_v5km2")]
+
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_mouseEntered"]
